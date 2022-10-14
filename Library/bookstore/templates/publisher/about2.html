@@ -1,0 +1,71 @@
+{% extends 'publisher/base2.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <!-- Font awesome CSS -->
+<link rel="stylesheet" href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+<!-- Page level plugin CSS-->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+
+
+<!-- Custom styles for this template-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-3" style="color: red">
+      <p style="color: blue"></p>  
+    </div>
+    
+    
+    
+    <div class="col-sm-6" style="padding-top: 87px">
+        <div class="card">
+      <div class="card-header text-primary">
+         Want to know about us ?
+      </div>
+    </div>
+    
+    
+    <div class="card mb-4">
+    <div class="card-body">
+    
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="form-group">
+    <p>This is E-Library, is a web based online library system founded by <strong>Adegoroye Oluwatosin Oluwsegun</strong>.The main aim of this E-library is to <strong>connect students and correct the poor management of student lecture materials, examination past questions and sharing of information from generation to generation. The problems, which existed, have been removed to a large extent. And it is expected that this project will go a long way in satisfying user’s requirements. </strong>This website provides a computerized version of the library system which will benefit the students as well as their lecturer as it helps passing their lecture note across to them with easy. The entire process is online where student can Search books, Chat with their lecture mate, View books and Download books. It also has a facility for student login where student can login and can see books available for download request for book or give some suggestions.</p>
+    </div>
+    
+        <div class="col-sm-4"></div>
+        </div>
+    
+    
+                          </div>
+                        </div>  
+                      </div>
+    
+    </div>
+    
+    
+    
+    <div class="col-sm-3" style="color: red">
+    </div>
+    
+    </div>
+    </div>
+    
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.dataTables.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}

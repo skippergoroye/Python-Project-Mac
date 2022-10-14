@@ -1,0 +1,86 @@
+{% extends 'publisher/base2.html' %}
+{% load static %}
+
+
+{% block stylesheet %}
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <!-- Font awesome CSS -->
+<link rel="stylesheet" href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+<!-- Page level plugin CSS-->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+
+
+<!-- Custom styles for this template-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-3" style="color: red">
+      <p style="color: blue"></p>  
+    </div>
+    
+    
+    
+    <div class="col-sm-6" style="padding-top: 65px">
+        <div class="card">
+    </div>
+    
+    
+    <div class="card mb-2">
+    <div class="card-body">
+    
+    <div class="row">
+        <div class="col-sm-8">
+        <a href="/ulchat"><button class="btn btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i>
+        Rerfresh For Any New Chats</button></a><br><br><br>
+    
+        {% for chat in object_list %}
+    
+    
+            <div class="chat" style="width: 150%; background: white; box-shadow: 2px 0px 25px 20px #111;">
+                {% if chat.user.is_superuser or chat.user.is_admin %}
+                    
+                    <small class="chat-user-special text-success"> {{ chat.user }}- Admin </small>
+    
+                {% elif chat.user.is_librarian %}
+                    <small class="chat-user-special text-danger"> {{ chat.user }}- Librarian </small>    
+    
+                {% else %}
+    
+                            <small class="chat-user text-primary"> {{ chat.user }} - Publisher </small>              
+    
+                {% endif %}
+                <p><b class="chat-content">{{ chat|linebreaks }}</b></p>
+                <small class="chat-date">{{ chat.posted_at }}</small>
+            </div><br><br><br>
+    
+        {% empty %}
+        <h1 class="heading">No Chats Yet Be The First To Message!</h1><br>
+    
+        {% endfor %}
+        <br><a href="{% url 'ucchat' %}"><button class="btn btn-outline-primary">New Message</button></a>
+    
+        <div class="col-sm-4"></div>
+        </div>
+    
+    
+                          </div>
+                        </div>  
+                      </div>
+    
+    </div>
+    
+    
+    
+    <div class="col-sm-2" style="color: red">
+    </div>
+    
+    </div>
+    </div>
+{% endblock %} 

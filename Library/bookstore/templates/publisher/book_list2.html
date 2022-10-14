@@ -1,0 +1,119 @@
+{% extends 'publisher/base2.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+{% endblock %}
+
+
+
+ {% block body %}
+ <div class="container-fluid overflow-scroll mb-3 mt-3">
+
+    <table class="table table-striped table-bordered mydatatable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Book Cover</th>
+                <th>Course Title</th>
+                <th>Read</th>
+                <th>Download</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+           <!-- if and for -->
+           {% if books %}
+           {% for book in books %}
+
+        
+                <tr>
+                  <td>{{ book.course_code }}</td>                                                                                                                                           
+
+                  <td>
+                    {% if book.cover %}
+                    <img src="{{ book.cover.url }}" alt="{{ book.title}}" style="height: 100px; width: 100px">
+                    {% else %}
+                    <span class="text-muted">No Cover</span>
+                    {% endif %}
+                   </td>
+
+                  <td>{{ book.title }}</td>
+
+                  <td>
+                    {% if book.pdf %}
+                    <a href="{{ book.pdf.url }}" class="btn btn-outline-primary" target="_blank">Read PDF</a>
+                    {% else %}
+                    <span class="text-muted">No PDF</span>
+                   {% endif %}
+                  </td>
+
+
+                    <td>
+                        {% if book.cover %}
+                    <a href="{{ book.pdf.url }}" download class="btn btn-outline-success">Download PDF</a>
+                    {% else %}
+                    <span class="text-muted">No PDF</span>
+                    {% endif %}
+                  </td>
+                  
+                </tr>
+
+                <!-- end for and if -->
+                {% endfor %}
+               {% endif %} 
+            </tbody>
+        <tfoot>
+            <tr>
+                <th>Course Code</th>
+                <th>Book Cover</th>
+                <th>Course Title</th>
+                <th>Read</th>
+                <th>Download</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+ {% endblock %}
+
+ 
+ 
+ {% block extrascripts2 %}
+ <!-----table script--->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+	$('.mydatatable').dataTable();
+</script>
+ {% endblock extrascripts2 %}
+
+
